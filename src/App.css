@@ -59,7 +59,7 @@
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  color: var(--perigo);
+  color: var(--danger);
 }
 
 .app li span {
@@ -67,23 +67,23 @@
   flex: 1;
 }
 
-.app li span.concluida {
+.app li span.completed {
   text-decoration: line-through;
   color: var(--text-muted);
 }
 
-.topo {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.topo h1 {
+.header h1 {
   margin-bottom: 0;
 }
 
-.toggle-tema {
+.theme-toggle {
   background: none;
   border: none;
   font-size: 1.2rem;

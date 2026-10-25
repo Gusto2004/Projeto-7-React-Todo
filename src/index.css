@@ -5,7 +5,7 @@
   --text-muted: #9c9caa;
   --border: #e2e2ea;
   --accent: #4361ee;
-  --perigo: #e5484d;
+  --danger: #e5484d;
 }
 
 body.dark {
@@ -15,7 +15,7 @@ body.dark {
   --text-muted: #6c6c80;
   --border: #33334a;
   --accent: #7c93ff;
-  --perigo: #ff6b6f;
+  --danger: #ff6b6f;
 }
 
 * {

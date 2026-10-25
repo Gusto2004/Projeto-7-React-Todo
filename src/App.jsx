@@ -2,86 +2,86 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
-  const [texto, setTexto] = useState("");
-  const [tarefas, setTarefas] = useState(() => {
-    const guardadas = localStorage.getItem("tarefas");
-    return guardadas ? JSON.parse(guardadas) : [];
+  const [text, setText] = useState("");
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem("tasks");
+    return saved ? JSON.parse(saved) : [];
   });
-  const [escuro, setEscuro] = useState(() => {
-    const guardado = localStorage.getItem("tema");
-    return guardado ? guardado === "escuro" : true;
+  const [dark, setDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved ? saved === "dark" : true;
   });
 
   useEffect(() => {
-    // O QUE fazer
-    localStorage.setItem("tarefas", JSON.stringify(tarefas));
-  }, [tarefas]); // QUANDO fazer (a "lista de dependências")
+    // WHAT to do
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]); // WHEN to do it (the "dependency list")
 
   useEffect(() => {
-    if (escuro) {
+    if (dark) {
       document.body.classList.add("dark");
     } else {
       document.body.classList.remove("dark");
     }
-    localStorage.setItem("tema", escuro ? "escuro" : "claro");
-  }, [escuro]);
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  }, [dark]);
 
-  function adicionarTarefa(e) {
+  function addTask(e) {
     e.preventDefault();
 
-    if (texto.trim() === "") return;
+    if (text.trim() === "") return;
 
-    const novaTarefa = {
+    const newTask = {
       id: Date.now(),
-      texto: texto,
-      concluida: false,
+      text: text,
+      completed: false,
     };
 
-    setTarefas([...tarefas, novaTarefa]);
-    setTexto("");
+    setTasks([...tasks, newTask]);
+    setText("");
   }
 
-  function alternarConcluida(id) {
-    setTarefas(
-      tarefas.map((tarefa) =>
-        tarefa.id === id ? { ...tarefa, concluida: !tarefa.concluida } : tarefa,
+  function toggleCompleted(id) {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task,
       ),
     );
   }
 
-  function apagarTarefa(id) {
-    setTarefas(tarefas.filter((tarefa) => tarefa.id !== id));
+  function deleteTask(id) {
+    setTasks(tasks.filter((task) => task.id !== id));
   }
 
   return (
     <div className="app">
-      <div className="topo">
-        <h1>As minhas tarefas</h1>
-        <button className="toggle-tema" onClick={() => setEscuro(!escuro)}>
-          {escuro ? "☀️" : "🌙"}
+      <div className="header">
+        <h1>My tasks</h1>
+        <button className="theme-toggle" onClick={() => setDark(!dark)}>
+          {dark ? "☀️" : "🌙"}
         </button>
       </div>
 
-      <form onSubmit={adicionarTarefa}>
+      <form onSubmit={addTask}>
         <input
           type="text"
-          placeholder="Escreve uma tarefa..."
-          value={texto}
-          onChange={(e) => setTexto(e.target.value)}
+          placeholder="Write a task..."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
-        <button type="submit">Adicionar</button>
+        <button type="submit">Add</button>
       </form>
 
       <ul>
-        {tarefas.map((tarefa) => (
-          <li key={tarefa.id}>
+        {tasks.map((task) => (
+          <li key={task.id}>
             <span
-              className={tarefa.concluida ? "concluida" : ""}
-              onClick={() => alternarConcluida(tarefa.id)}
+              className={task.completed ? "completed" : ""}
+              onClick={() => toggleCompleted(task.id)}
             >
-              {tarefa.texto}
+              {task.text}
             </span>
-            <button onClick={() => apagarTarefa(tarefa.id)}>✕</button>
+            <button onClick={() => deleteTask(task.id)}>✕</button>
           </li>
         ))}
       </ul>

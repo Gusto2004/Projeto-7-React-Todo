@@ -1,66 +1,66 @@
-# Lista de Tarefas (React)
+# To-do List (React)
 
-Versão em React da minha lista de tarefas, construída com Vite. É o mesmo problema do [Projeto 2](https://github.com/Gusto2004/Projeto-2-To-do-List), mas resolvido com componentes e estado em vez de manipulação direta do DOM.
+A React version of my to-do list, built with Vite. It's the same problem as [Project 2](https://github.com/Gusto2004/Projeto-2-To-do-List), but solved with components and state instead of direct DOM manipulation.
 
-## Funcionalidades
+## Features
 
-- Adicionar tarefas (ignora texto vazio ou só com espaços)
-- Marcar como concluída, clicando no texto da tarefa
-- Apagar tarefas
-- As tarefas ficam guardadas no browser (`localStorage`), logo sobrevivem a um refresh
-- Modo escuro / claro com botão de alternância, também memorizado entre visitas
+- Add tasks (ignores empty text or text with only spaces)
+- Mark a task as completed by clicking its text
+- Delete tasks
+- Tasks are saved in the browser (`localStorage`), so they survive a refresh
+- Dark / light mode with a toggle button, also remembered between visits
 
-## Tecnologias
+## Technologies
 
 - React 19 (`useState`, `useEffect`)
 - Vite
-- CSS puro (variáveis CSS para os temas)
+- Plain CSS (CSS variables for the themes)
 - ESLint
-- `gh-pages` para o deploy
+- `gh-pages` for deployment
 
-## Como correr
+## How to run
 
-Precisas de ter o [Node.js](https://nodejs.org) instalado.
-
-```bash
-npm install     # instala as dependências
-npm run dev     # arranca o servidor de desenvolvimento
-```
-
-Depois abre o endereço que aparece no terminal (normalmente `http://localhost:5173`).
-
-Outros comandos úteis:
+You need [Node.js](https://nodejs.org) installed.
 
 ```bash
-npm run build     # gera a versão de produção na pasta dist/
-npm run preview   # vê localmente o resultado do build
-npm run deploy    # publica no GitHub Pages
+npm install     # installs the dependencies
+npm run dev     # starts the development server
 ```
 
-## Estrutura
+Then open the address shown in the terminal (usually `http://localhost:5173`).
+
+Other useful commands:
+
+```bash
+npm run build     # builds the production version into the dist/ folder
+npm run preview   # previews the build locally
+npm run deploy    # publishes to GitHub Pages
+```
+
+## Structure
 
 ```
 src/
-  main.jsx     # ponto de entrada, monta o App
-  App.jsx      # componente único com toda a lógica
-  App.css      # estilos da app
-  index.css    # estilos globais e variáveis de tema
+  main.jsx     # entry point, mounts App
+  App.jsx      # single component with all the logic
+  App.css      # app styles
+  index.css    # global styles and theme variables
 ```
 
-## O que aprendi
+## What I learned
 
-- **`useState`** para guardar o estado (texto do input, lista de tarefas, tema). O estado inicial é lido do `localStorage` através de uma função, para só correr no primeiro render.
-- **`useEffect`** para os efeitos secundários: sempre que as `tarefas` mudam, gravo-as no `localStorage`; sempre que o tema muda, atualizo a classe do `<body>`.
-- **Imutabilidade**: nunca altero a lista diretamente. Uso `[...tarefas, nova]` para adicionar, `.map()` para editar uma tarefa e `.filter()` para remover.
-- **`key`** em cada `<li>` para o React saber que item é qual quando a lista muda.
+- **`useState`** to hold state (input text, task list, theme). The initial state is read from `localStorage` through a function, so it only runs on the first render.
+- **`useEffect`** for side effects: whenever `tasks` changes, I save them to `localStorage`; whenever the theme changes, I update the `<body>` class.
+- **Immutability**: I never change the list directly. I use `[...tasks, newTask]` to add, `.map()` to edit a task and `.filter()` to remove one.
+- **`key`** on each `<li>` so React knows which item is which when the list changes.
 
 ## Demo
 
-🔗 [Ver app ao vivo](https://gusto2004.github.io/Projeto-7-React-Todo/)
+🔗 [View the live app](https://gusto2004.github.io/Projeto-7-React-Todo/)
 
-## Próximos passos
+## Next steps
 
-- [ ] Separar o `App.jsx` em componentes (`Formulario`, `ListaTarefas`, `Tarefa`)
-- [ ] Filtros: todas / por fazer / concluídas
-- [ ] Editar o texto de uma tarefa já criada
-- [ ] Ligar ao backend do [Projeto 4](https://github.com/Gusto2004/Projeto-4-Backend-To-do) em vez do `localStorage`
+- [ ] Split `App.jsx` into components (`Form`, `TaskList`, `Task`)
+- [ ] Filters: all / to do / completed
+- [ ] Edit the text of an existing task
+- [ ] Connect to the backend from [Project 4](https://github.com/Gusto2004/Projeto-4-Backend-To-do) instead of `localStorage`
